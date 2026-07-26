@@ -1,10 +1,11 @@
+using E_Commerce.API.Extensions;
 using E_Commerce.Infrastructure;
 
 namespace E_Commerce.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,7 @@ namespace E_Commerce.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            await app.MigrateAndSeedAsync();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

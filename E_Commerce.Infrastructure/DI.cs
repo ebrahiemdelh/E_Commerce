@@ -10,6 +10,8 @@ namespace E_Commerce.Infrastructure
             services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IDbInitializer, DbInitializer>();
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service1");
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service2");
 
 
             return services;
