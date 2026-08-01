@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace E_Commerce.Infrastructure
+﻿namespace E_Commerce.Infrastructure
 {
     public static class DI
     {
@@ -10,6 +7,7 @@ namespace E_Commerce.Infrastructure
             services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service1");
             //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service2");
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace E_Commerce.Infrastructure.Data
+﻿namespace E_Commerce.Infrastructure.Data
 {
     internal class StoreDbContext(DbContextOptions<StoreDbContext> options) : DbContext(options)
     {
