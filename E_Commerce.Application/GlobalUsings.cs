@@ -1,7 +1,9 @@
-﻿global using E_Commerce.Application.Common;
+﻿global using AutoMapper;
+global using E_Commerce.Application.Common;
 global using E_Commerce.Application.Contracts;
 global using E_Commerce.Application.Contracts.Dtos.Products;
 global using E_Commerce.Application.Services;
 global using E_Commerce.Domain.Contracts;
+global using E_Commerce.Domain.Entities;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
