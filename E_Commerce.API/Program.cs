@@ -1,6 +1,7 @@
 using E_Commerce.API.Extensions;
 using E_Commerce.Application;
 using E_Commerce.Infrastructure;
+using Microsoft.Extensions.FileProviders;
 
 namespace E_Commerce.API
 {
@@ -28,6 +29,11 @@ namespace E_Commerce.API
                 app.UseSwaggerUI();
             }
             await app.MigrateAndSeedAsync();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Files")),
+                RequestPath = "/Files"
+            });
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

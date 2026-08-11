@@ -12,9 +12,10 @@
         public async Task<Result<ProductDto?>> GetProductByIdAsync(int Id, CancellationToken token = default)
         {
             var product = await unitOfWork.GetRepository<Product>().GetByIdAsync(Id, token);
+
             if (product == null) return Error.NotFound($"Product With Id {Id} not found");
 
-            return mapper.Map<ProductDto>(product);
+            return mapper.Map<ProductDto?>(product);
         }
 
         //public Task<Result<ProductDto>> CreateProductAsync(ProductCreateDto productCreateDto, CancellationToken token = default)

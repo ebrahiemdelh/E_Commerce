@@ -1,4 +1,5 @@
-﻿using E_Commerce.Application.Contracts;
+﻿using E_Commerce.API.Controllers.Base;
+using E_Commerce.Application.Contracts;
 using E_Commerce.Application.Contracts.Dtos.Products;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,27 +7,31 @@ namespace E_Commerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController(IProductService product) : ControllerBase
+    public class ProductController(IProductService product) : APIBaseController
     {
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllAsync(CancellationToken token = default)
         {
-            return Ok(await product.GetProductsAsync(token));
+            var result = await product.GetProductsAsync(token);
+            return HandleResult<IEnumerable<ProductDto>>(result);
         }
         [HttpGet("{Id}")]
         public async Task<ActionResult<ProductDto>> GetAsync(int Id, CancellationToken token = default)
         {
-            return Ok(await product.GetProductByIdAsync(Id, token));
+            var result = await product.GetProductByIdAsync(Id, token);
+            return HandleResult(result)!;
         }
         [HttpGet("Brands")]
         public async Task<ActionResult<IEnumerable<BrandDto>>> GetBrandsAsync(CancellationToken token = default)
         {
-            return Ok(await product.GetBrandsAsync(token));
+            var result = await product.GetBrandsAsync(token);
+            return HandleResult(result);
         }
         [HttpGet("Types")]
         public async Task<ActionResult<IEnumerable<TypeDto>>> GetTypesAsync(CancellationToken token = default)
         {
-            return Ok(await product.GetTypesAsync(token));
+            var result = await product.GetTypesAsync(token);
+            return HandleResult(result);
         }
     }
 }
