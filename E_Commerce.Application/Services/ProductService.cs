@@ -2,16 +2,20 @@
 {
     internal class ProductService(IUnitOfWork unitOfWork, IMapper mapper) : IProductService
     {
-        public async Task<Result<IEnumerable<ProductDto>>> GetProductsAsync(CancellationToken token = default)
+        public async Task<Result<PaginatedResult<ProductDto>>> GetProductsAsync(ProductQueryParameters queryParameters, CancellationToken token = default)
         {
-            var products = await unitOfWork.GetRepository<Product>().GetAllAsync(token: token);
+            var products = await unitOfWork.GetRepository<Product>().GetAllAsync(new ProductWithBrandAndTypeSpec(queryParameters), token: token);
+
+            var count = await unitOfWork.GetRepository<Product>().CountAsync(new ProductCountSpecifications(queryParameters), token: token);
+
             var data = mapper.Map<IEnumerable<ProductDto>>(products);
-            return Result<IEnumerable<ProductDto>>.Ok(data);
+            var result = new PaginatedResult<ProductDto>(queryParameters.PageSize, queryParameters.PageIndex, count, data);
+            return result;
         }
 
         public async Task<Result<ProductDto?>> GetProductByIdAsync(int Id, CancellationToken token = default)
         {
-            var product = await unitOfWork.GetRepository<Product>().GetByIdAsync(Id, token);
+            var product = await unitOfWork.GetRepository<Product>().GetAsync(new ProductWithBrandAndTypeSpec(Id), token);
 
             if (product == null) return Error.NotFound($"Product With Id {Id} not found");
 
