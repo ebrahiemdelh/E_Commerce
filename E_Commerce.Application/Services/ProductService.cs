@@ -1,4 +1,6 @@
-﻿namespace E_Commerce.Application.Services
+﻿using E_Commerce.Domain.Entities.Products;
+
+namespace E_Commerce.Application.Services
 {
     internal class ProductService(IUnitOfWork unitOfWork, IMapper mapper) : IProductService
     {

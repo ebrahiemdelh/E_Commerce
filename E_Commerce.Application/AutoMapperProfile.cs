@@ -1,4 +1,8 @@
-﻿namespace E_Commerce.Application
+﻿using E_Commerce.Application.Contracts.Dtos.Baskets;
+using E_Commerce.Domain.Entities.Baskets;
+using E_Commerce.Domain.Entities.Products;
+
+namespace E_Commerce.Application
 {
     internal class AutoMapperProfile : Profile
     {
@@ -12,6 +16,12 @@
             CreateMap<Brand, BrandDto>();
 
             CreateMap<ProductType, TypeDto>();
+
+
+            CreateMap<Basket, BasketDto>()
+                .ReverseMap();
+            CreateMap<BasketItem, BasketItemDto>()
+                .ReverseMap();
         }
     }
 }

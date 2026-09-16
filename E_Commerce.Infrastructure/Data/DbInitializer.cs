@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using E_Commerce.Domain.Entities.Products;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace E_Commerce.Infrastructure.Data

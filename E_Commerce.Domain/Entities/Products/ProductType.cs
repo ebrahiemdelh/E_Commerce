@@ -1,6 +1,6 @@
-﻿namespace E_Commerce.Domain.Entities
+﻿namespace E_Commerce.Domain.Entities.Products
 {
-    public class Brand : BaseEntity<int>
+    public class ProductType : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
 

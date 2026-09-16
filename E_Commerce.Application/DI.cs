@@ -5,6 +5,7 @@
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IBasketService, BasketService>();
 
             services.AddAutoMapper(typeof(DI).Assembly);
 

@@ -1,4 +1,6 @@
-﻿namespace E_Commerce.Infrastructure.Data
+﻿using E_Commerce.Domain.Entities.Products;
+
+namespace E_Commerce.Infrastructure.Data
 {
     internal class StoreDbContext(DbContextOptions<StoreDbContext> options) : DbContext(options)
     {

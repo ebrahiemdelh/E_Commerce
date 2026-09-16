@@ -8,10 +8,20 @@
 
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service1");
-            //services.AddKeyedScoped<IDbInitializer, DbInitializer>("Service2");
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service1");
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service2");
 
-
+            //services.AddSingleton<IConnectionMultiplexer>(sp =>
+            //{
+            //    var configuration = ConfigurationOptions.Parse(config.GetConnectionString("RedisConnection"), true);
+            //    return ConnectionMultiplexer.Connect(configuration);
+            //});
+            services.AddSingleton<IConnectionMultiplexer>(cfg =>
+             {
+                 return ConnectionMultiplexer.Connect(config.GetConnectionString("RedisConnection")!);
+             });
             return services;
         }
     }

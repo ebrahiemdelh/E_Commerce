@@ -12,6 +12,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.18" />
+		<PackageReference Include="StackExchange.Redis" Version="3.2.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="DataSeed/*.json">

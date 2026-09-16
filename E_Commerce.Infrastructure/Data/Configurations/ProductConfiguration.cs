@@ -2,6 +2,8 @@
 
 
 
+using E_Commerce.Domain.Entities.Products;
+
 namespace E_Commerce.Infrastructure.Data.Configurations
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>

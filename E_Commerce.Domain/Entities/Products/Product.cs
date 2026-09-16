@@ -1,4 +1,4 @@
-﻿namespace E_Commerce.Domain.Entities
+﻿namespace E_Commerce.Domain.Entities.Products
 {
     public class Product : BaseEntity<int>
     {

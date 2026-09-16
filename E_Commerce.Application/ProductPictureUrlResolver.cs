@@ -1,4 +1,6 @@
-﻿namespace E_Commerce.Application
+﻿using E_Commerce.Domain.Entities.Products;
+
+namespace E_Commerce.Application
 {
     internal class ProductPictureUrlResolver(IConfiguration config) : IValueResolver<Product, ProductDto, string>
     {

@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using E_Commerce.Domain.Entities.Products;
+using System.Linq.Expressions;
 
 namespace E_Commerce.Domain.Contracts
 {
