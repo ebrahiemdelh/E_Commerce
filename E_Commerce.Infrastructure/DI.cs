@@ -7,11 +7,13 @@
             services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IDbInitializer, DbInitializer>();
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service1");
+            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service2");
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
-            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service1");
-            //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service2");
+            services.AddScoped<ICacheRepository, CacheRepository>();
 
             //services.AddSingleton<IConnectionMultiplexer>(sp =>
             //{

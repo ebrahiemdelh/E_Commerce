@@ -2,6 +2,7 @@
 using E_Commerce.Application.Common;
 using E_Commerce.Application.Contracts;
 using E_Commerce.Application.Contracts.Dtos.Products;
+using E_Commerce.API.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.API.Controllers
@@ -10,6 +11,7 @@ namespace E_Commerce.API.Controllers
     [ApiController]
     public class ProductController(IProductService product) : APIBaseController
     {
+        [Cache]
         [HttpGet]
         public async Task<ActionResult<PaginatedResult<ProductDto>>> GetAllAsync([FromQuery] ProductQueryParameters queryParameters, CancellationToken token = default)
         {

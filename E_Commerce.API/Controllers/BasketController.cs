@@ -9,7 +9,7 @@ namespace E_Commerce.API.Controllers
     [Route("api/[controller]")]
     public class BasketController(IBasketService basketService) : APIBaseController
     {
-        [HttpGet("{id:string}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<BasketDto>> Get(string id)
         {
             var result = await basketService.GetBasketAsync(id);
@@ -23,7 +23,7 @@ namespace E_Commerce.API.Controllers
             return HandleResult(result);
         }
 
-        [HttpDelete("{id:string}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(string id)
         {
             var result = await basketService.DeleteAsync(id);
