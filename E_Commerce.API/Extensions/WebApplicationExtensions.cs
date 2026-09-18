@@ -8,7 +8,7 @@ namespace E_Commerce.API.Extensions
         {
             using var scope = app.Services.CreateScope();
             foreach (var init in scope.ServiceProvider.GetRequiredService<IEnumerable<IDbInitializer>>())
-            {
+             {
                 await init.MigrateAsync();
                 await init.SeedAsync();
             }

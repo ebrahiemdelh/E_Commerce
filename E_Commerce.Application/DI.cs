@@ -4,11 +4,12 @@
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<ICacheService, CacheService>();
 
-            services.AddAutoMapper(typeof(DI).Assembly);
+            services.AddAutoMapper(cfg => { }, typeof(DI).Assembly);
 
 
 
