@@ -11,9 +11,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.20" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.20" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.20" />
-		<PackageReference Include="StackExchange.Redis" Version="3.2.1" />
+		<PackageReference Include="StackExchange.Redis" Version="3.3.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.22.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="DataSeed/*.json">

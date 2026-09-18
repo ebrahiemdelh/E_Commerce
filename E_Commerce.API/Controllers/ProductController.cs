@@ -4,6 +4,7 @@ using E_Commerce.Application.Contracts;
 using E_Commerce.Application.Contracts.Dtos.Products;
 using E_Commerce.API.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Commerce.API.Controllers
 {
@@ -13,6 +14,7 @@ namespace E_Commerce.API.Controllers
     {
         [Cache]
         [HttpGet]
+        //[Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult<PaginatedResult<ProductDto>>> GetAllAsync([FromQuery] ProductQueryParameters queryParameters, CancellationToken token = default)
         {
             var result = await product.GetProductsAsync(queryParameters, token);
