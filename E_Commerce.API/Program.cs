@@ -1,4 +1,5 @@
 using E_Commerce.API.Extensions;
+using E_Commerce.API.Middleware;
 using E_Commerce.Application;
 using E_Commerce.Infrastructure;
 using Microsoft.Extensions.FileProviders;
@@ -13,8 +14,11 @@ namespace E_Commerce.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddInfrastructureService(builder.Configuration).AddApplicationService();
             builder.Services.AddControllers();
+
+            builder.Services.AddProblemDetails();
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            builder.Services.AddInfrastructureService(builder.Configuration).AddApplicationService();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             //builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
@@ -48,6 +52,9 @@ namespace E_Commerce.API
 
             var app = builder.Build();
 
+            await app.MigrateAndSeedAsync();
+
+            app.UseExceptionHandler();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -55,7 +62,6 @@ namespace E_Commerce.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            await app.MigrateAndSeedAsync();
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Files")),
