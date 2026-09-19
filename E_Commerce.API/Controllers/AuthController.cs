@@ -47,7 +47,8 @@ namespace E_Commerce.API.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             string email = User?.FindFirstValue(ClaimTypes.Email)!;
-            var result = await authService.GetCurrentUserAsync(email);
+            return HandleResult(await authService.GetCurrentUserAsync(email));
+
         }
     }
 }

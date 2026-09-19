@@ -1,5 +1,6 @@
 ﻿global using E_Commerce.Domain.Contracts;
 global using E_Commerce.Domain.Entities;
+global using E_Commerce.Domain.Entities.Orders;
 global using E_Commerce.Infrastructure.Data;
 global using E_Commerce.Infrastructure.Repositories;
 global using Microsoft.EntityFrameworkCore;
@@ -7,3 +8,4 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using StackExchange.Redis;
+global using Order = E_Commerce.Domain.Entities.Orders.Order;

@@ -8,6 +8,7 @@
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<ICacheService, CacheService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             services.AddAutoMapper(cfg => { }, typeof(DI).Assembly);
 

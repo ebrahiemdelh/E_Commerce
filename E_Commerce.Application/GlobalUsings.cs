@@ -5,6 +5,5 @@ global using E_Commerce.Application.Contracts.Dtos.Products;
 global using E_Commerce.Application.Services;
 global using E_Commerce.Application.Specifications;
 global using E_Commerce.Domain.Contracts;
-global using E_Commerce.Domain.Entities;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
