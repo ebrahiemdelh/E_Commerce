@@ -52,5 +52,27 @@ namespace E_Commerce.Application.Services
             await basketRepository.DeleteAsync(basket.Id, token);
             return mapper.Map<OrderResponse>(order);
         }
+
+        public async Task<Result<IEnumerable<OrderResponse>>> GetAllAsync(string email, CancellationToken token = default)
+        {
+            var orders = await unitOfWork.GetRepository<Order, Guid>().GetAsync(new OrdersWithDeliveryMethodSpec(email), token);
+
+            return mapper.Map<List<OrderResponse>>(orders);
+        }
+
+        public async Task<Result<OrderResponse>> GetByIdAsync(Guid id, CancellationToken token = default)
+        {
+            var order = await unitOfWork.GetRepository<Order, Guid>().GetAsync(new OrderById(id), token);
+            if (order is null) return Result<OrderResponse>.Fail(Error.NotFound($"Order with id: {id} Not found"));
+
+            return mapper.Map<OrderResponse>(order);
+        }
+
+        public async Task<Result<IEnumerable<DeliveryMethodDto>>> GetDeliveryMethods(CancellationToken token = default)
+        {
+            var deliveryMethods = await unitOfWork.GetRepository<DeliveryMethod>().GetAllAsync(false, token);
+
+            return mapper.Map<List<DeliveryMethodDto>>(deliveryMethods);
+        }
     }
 }
