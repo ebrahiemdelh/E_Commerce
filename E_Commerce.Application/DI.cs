@@ -9,6 +9,8 @@
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IBasketPricer, BasketPricer>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
             services.AddAutoMapper(cfg => { }, typeof(DI).Assembly);
 

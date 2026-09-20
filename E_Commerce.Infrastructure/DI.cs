@@ -2,6 +2,7 @@
 using E_Commerce.Infrastructure.Authentication;
 using E_Commerce.Infrastructure.Identity.Entities;
 using E_Commerce.Infrastructure.Identity.Services;
+using E_Commerce.Infrastructure.Payment;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -42,6 +43,7 @@ namespace E_Commerce.Infrastructure
 
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDbInitializer, StoreIdentityDbInitializer>();
+            services.AddScoped<IPaymentGateway, StripePaymentGateway>();
             //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service1");
             //services.AddKeyedScoped<IDbInitializer, DbInitializer]("Service2");
 
@@ -81,9 +83,9 @@ namespace E_Commerce.Infrastructure
 
                         RequireAudience = true,
                         RequireExpirationTime = true,
-                        ValidateLifetime=true,
+                        ValidateLifetime = true,
 
-                        ClockSkew=TimeSpan.FromMinutes(1)
+                        ClockSkew = TimeSpan.FromMinutes(1)
                     };
                     options.Events = new JwtBearerEvents
                     {
